@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.7.0'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id "org.openapi.generator" version "6.0.0"
 }
 
 group = 'com.avimedical'
@@ -22,6 +23,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'javax.validation:validation-api:2.0.1.Final'
+	implementation 'io.swagger.core.v3:swagger-annotations:2.2.1'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -32,3 +35,23 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+compileJava.dependsOn tasks.openApiGenerate
+
+
+openApiGenerate {
+	generatorName = "spring"
+	inputSpec = "$projectDir/src/main/resources/api.yml"
+	apiPackage = "com.avimedical.appointmentservice.generated.api"
+	modelPackage = "com.avimedical.appointmentservice.generated.model"
+	configOptions = [
+			interfaceOnly: "true",
+			openApiNullable: "false",
+			skipDefaultInterface: "true"
+	]
+	globalProperties = [
+			apis: "",
+			models: ""
+	]
+}
+

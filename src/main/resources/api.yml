@@ -1,0 +1,33 @@
+openapi: 3.0.0
+info:
+  title: appointment-service
+  version: 1.0.0
+paths:
+  /appointments:
+    parameters: []
+    post:
+      summary: ''
+      operationId: createAppointment
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    Patient:
+      title: Patient
+      type: object
+      properties:
+        id:
+          type: string
+    Doctor:
+      title: Doctor
+      type: object
+      properties:
+        id:
+          type: string
+    Appointment:
+      title: Appointment
+      type: object
+      properties:
+        id:
+          type: string
