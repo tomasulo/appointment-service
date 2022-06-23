@@ -1,24 +1,19 @@
 package com.avimedical.appointments.scheduling.domain.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.time.Instant;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Value;
 
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Value
+@Builder(toBuilder = true)
 public class Appointment {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
+    Long id;
+    Channel channel;
+    Reason reason;
+    String notes;
+    String videoCallLink;
+    String cancellationLink;
+    Instant startDateTime;
+    Instant estimatedEndTime;
 }

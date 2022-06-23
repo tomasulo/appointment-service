@@ -1,0 +1,10 @@
+POST http://localhost:8080/appointments
+Content-Type: application/json
+
+{
+
+
+
+}
+
+###

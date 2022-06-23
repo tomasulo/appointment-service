@@ -72,25 +72,21 @@ components:
             properties:
               channel:
                 type: string
-              openSymptoms:
-                type: array
-                items:
-                  type: object
-              codes:
+                enum:
+                  - IN_PERSON
+                  - ONLINE
+              symptoms:
                 type: array
                 items:
                   type: string
-              source:
-                type: string
               startDateTime:
                 type: string
-              uniqueAppId:
-                type: string
+                format: date-time
               isFirstAppointment:
                 type: boolean
               notes:
                 type: string
               practiceId:
-                type: integer
-              regionId:
-                type: integer
+                type: string
+              staffId:
+                type: string
