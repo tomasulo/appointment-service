@@ -75,15 +75,19 @@ components:
                 enum:
                   - IN_PERSON
                   - ONLINE
+              reasonId:
+                type: string
               symptoms:
                 type: array
                 items:
                   type: string
+                  enum:
+                    - FEVER
+                    - COUGH
+                    - SORE_THROAT
               startDateTime:
                 type: string
                 format: date-time
-              isFirstAppointment:
-                type: boolean
               notes:
                 type: string
               practiceId:

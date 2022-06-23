@@ -23,6 +23,9 @@ public class AppointmentService {
             VideoCall videoCall = conferencing.scheduleCall(appt.getStartDateTime(), Duration.ofMinutes(60));
             appt = appt.toBuilder().videoCallLink(videoCall.getUrl()).build();
         }
+
+        // TODO map symptoms and reason
+
         Appointment appointment = repository.save(appt); // todo return other object?
         appointment = addCancellationLink(appointment);
         appointment = addEstimatedEndTime(appointment);
