@@ -10,24 +10,87 @@ paths:
       operationId: createAppointment
       responses:
         '200':
+          $ref: '#/components/responses/CreateAppointmentResponse'
+      requestBody:
+        $ref: '#/components/requestBodies/CreateAppointmentRequest'
+  /practices:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-practices
+      description: Retrieve available practices
+  /reasons:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-reasons
+  /regions:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-regions
+  /availabilities:
+    post:
+      summary: ''
+      operationId: getAvailabilities
+      responses:
+        '200':
           description: OK
 components:
-  schemas:
-    Patient:
-      title: Patient
-      type: object
-      properties:
-        id:
-          type: string
-    Doctor:
-      title: Doctor
-      type: object
-      properties:
-        id:
-          type: string
-    Appointment:
-      title: Appointment
-      type: object
-      properties:
-        id:
-          type: string
+  schemas: {}
+  responses:
+    CreateAppointmentResponse:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              practiceId:
+                type: string
+              staffId:
+                type: string
+              bookedStartTime:
+                type: string
+              estimatedEndTime:
+                type: string
+              videoCallLink:
+                type: string
+              cancellationLink:
+                type: string
+  requestBodies:
+    CreateAppointmentRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              channel:
+                type: string
+              openSymptoms:
+                type: array
+                items:
+                  type: object
+              codes:
+                type: array
+                items:
+                  type: string
+              source:
+                type: string
+              startDateTime:
+                type: string
+              uniqueAppId:
+                type: string
+              isFirstAppointment:
+                type: boolean
+              notes:
+                type: string
+              practiceId:
+                type: integer
+              regionId:
+                type: integer

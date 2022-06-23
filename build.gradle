@@ -25,6 +25,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'javax.validation:validation-api:2.0.1.Final'
 	implementation 'io.swagger.core.v3:swagger-annotations:2.2.1'
+	implementation 'org.openapitools:jackson-databind-nullable:0.2.2'
+	implementation 'org.flywaydb:flyway-core'
+
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -38,20 +41,17 @@ tasks.named('test') {
 
 compileJava.dependsOn tasks.openApiGenerate
 
+sourceSets.main.java.srcDirs += 'build/generated/openapi/src/main/java'
 
 openApiGenerate {
 	generatorName = "spring"
 	inputSpec = "$projectDir/src/main/resources/api.yml"
-	apiPackage = "com.avimedical.appointmentservice.generated.api"
-	modelPackage = "com.avimedical.appointmentservice.generated.model"
+	outputDir = "$buildDir/generated/openapi"
+	apiPackage = "com.avimedical.appointments.generated.api"
+	modelPackage = "com.avimedical.appointments.generated.model"
 	configOptions = [
 			interfaceOnly: "true",
-			openApiNullable: "false",
 			skipDefaultInterface: "true"
-	]
-	globalProperties = [
-			apis: "",
-			models: ""
 	]
 }
 
