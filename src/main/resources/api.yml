@@ -76,20 +76,6 @@ components:
         - VIDEO_CALL
     AppointmentDto:
       type: object
-      x-examples:
-        example-1:
-          id: string
-          channel: IN_PERSON
-          symptoms:
-            - string
-          reasonId: string
-          practiceId: string
-          startTime: string
-          bookedStartTime: string
-          estimatedEndTime: string
-          videoCallLink: string
-          cancellationLink: string
-          notes: string
       properties:
         id:
           type: string
@@ -113,11 +99,7 @@ components:
           type: string
         notes:
           type: string
-      description: ''
     TreatmentDto:
-      title: Treatment
-      x-stoplight:
-        id: onzq81vts1v90
       type: object
       properties:
         staffId:
