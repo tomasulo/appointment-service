@@ -1,6 +1,4 @@
-package com.avimedical.appointments.scheduling.adapters.h2;
-
-import java.time.Instant;
+package com.avimedical.appointments.scheduling.adapters.database.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,25 +12,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "APPOINTMENT")
+@Table(name = "REASONS")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AppointmentEntity {
+public class ReasonEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // Should be UUID or other non-guessable key format in production
-
-    private String notes;
-    private String videoCallLink;
-    private String reason;
-
-    private Instant startDateTime;
-
-    private Instant createdAt;
-    private Instant modifiedAt;
-
-
+    private String title;
+    private String description;
 }

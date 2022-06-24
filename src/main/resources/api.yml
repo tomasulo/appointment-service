@@ -8,89 +8,128 @@ paths:
     post:
       summary: ''
       operationId: createAppointment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppointmentDto'
       responses:
         '200':
-          $ref: '#/components/responses/CreateAppointmentResponse'
-      requestBody:
-        $ref: '#/components/requestBodies/CreateAppointmentRequest'
-  /practices:
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-practices
-      description: Retrieve available practices
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppointmentDto'
   /reasons:
     get:
       summary: Your GET endpoint
       tags: []
-      responses: {}
-      operationId: get-reasons
-  /regions:
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-regions
-  /availabilities:
-    post:
-      summary: ''
-      operationId: getAvailabilities
       responses:
         '200':
           description: OK
-components:
-  schemas: {}
-  responses:
-    CreateAppointmentResponse:
-      description: Example response
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              id:
-                type: string
-              practiceId:
-                type: string
-              staffId:
-                type: string
-              bookedStartTime:
-                type: string
-              estimatedEndTime:
-                type: string
-              videoCallLink:
-                type: string
-              cancellationLink:
-                type: string
-  requestBodies:
-    CreateAppointmentRequest:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              channel:
-                type: string
-                enum:
-                  - IN_PERSON
-                  - ONLINE
-              reasonId:
-                type: string
-              symptoms:
+          content:
+            application/json:
+              schema:
                 type: array
                 items:
-                  type: string
-                  enum:
-                    - FEVER
-                    - COUGH
-                    - SORE_THROAT
-              startDateTime:
-                type: string
-                format: date-time
-              notes:
-                type: string
-              practiceId:
-                type: string
-              staffId:
-                type: string
+                  $ref: '#/components/schemas/ReasonDto'
+              examples: {}
+      operationId: getReasons
+    post:
+      summary: ''
+      operationId: createReason
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReasonDto'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReasonDto'
+components:
+  schemas:
+    ReasonDto:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        channels:
+          type: array
+          items:
+            type: string
+        treatments:
+          type: array
+          items:
+            $ref: '#/components/schemas/TreatmentDto'
+    ChannelEnum:
+      type: string
+      enum:
+        - IN_PERSON
+        - VIDEO_CALL
+    AppointmentDto:
+      type: object
+      x-examples:
+        example-1:
+          id: string
+          channel: IN_PERSON
+          symptoms:
+            - string
+          reasonId: string
+          practiceId: string
+          startTime: string
+          bookedStartTime: string
+          estimatedEndTime: string
+          videoCallLink: string
+          cancellationLink: string
+          notes: string
+      properties:
+        id:
+          type: string
+        channel:
+          $ref: '#/components/schemas/ChannelEnum'
+        symptoms:
+          type: array
+          items:
+            type: string
+        reasonId:
+          type: string
+        practiceId:
+          type: string
+        startTime:
+          type: string
+        endTime:
+          type: string
+        videoCallLink:
+          type: string
+        cancellationLink:
+          type: string
+        notes:
+          type: string
+      description: ''
+    TreatmentDto:
+      title: Treatment
+      x-stoplight:
+        id: onzq81vts1v90
+      type: object
+      properties:
+        staffId:
+          type: string
+        duration:
+          type: string
+        description:
+          type: string
+      x-examples:
+        example-1:
+          staffId: string
+          duration: string
+          description: string
+  responses: {}
+  requestBodies: {}

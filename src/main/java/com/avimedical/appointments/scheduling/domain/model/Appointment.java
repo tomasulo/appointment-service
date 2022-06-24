@@ -1,19 +1,23 @@
 package com.avimedical.appointments.scheduling.domain.model;
 
 import java.time.Instant;
+import java.util.List;
 
 import lombok.Builder;
-import lombok.Value;
+import lombok.Data;
 
-@Value
+@Data
 @Builder(toBuilder = true)
 public class Appointment {
-    Long id;
+    String id;
     Channel channel;
+    String reasonId;
     Reason reason;
+    String practiceId;
     String notes;
+    List<String> symptoms;
     String videoCallLink;
     String cancellationLink;
-    Instant startDateTime;
-    Instant estimatedEndTime;
+    Instant startTime;
+    Instant endTime;
 }
