@@ -1,6 +1,10 @@
 package com.avimedical.appointments.scheduling.adapters.database;
 
+import java.util.List;
+
 import com.avimedical.appointments.scheduling.domain.model.Reason;
+import com.avimedical.appointments.scheduling.domain.model.Staff;
+import com.avimedical.appointments.scheduling.domain.model.Treatment;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,13 +22,9 @@ class H2AdapterIT {
     H2Adapter cut;
 
     @Test
-    void createReason_HappyPath() {
-        Reason reason = Reason.builder().title("Title").description("Description").build();
+    void getReasons_HappyPath() {
+        List<Reason> reasons = cut.getReasons();
 
-        Reason result = cut.create(reason);
-
-        assertThat(result.getId()).isNotNull();
-        assertThat(result.getTitle()).isEqualTo("Title");
-        assertThat(result.getDescription()).isEqualTo("Description");
+        assertThat(reasons).hasSize(3);
     }
 }

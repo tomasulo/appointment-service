@@ -35,21 +35,6 @@ paths:
                   $ref: '#/components/schemas/ReasonDto'
               examples: { }
       operationId: getReasons
-    post:
-      summary: ''
-      operationId: createReason
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReasonDto'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ReasonDto'
 components:
   schemas:
     ReasonDto:

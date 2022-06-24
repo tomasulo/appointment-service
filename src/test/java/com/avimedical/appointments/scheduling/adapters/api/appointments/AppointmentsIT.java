@@ -49,7 +49,7 @@ class AppointmentsIT {
         assertThat(response.getReasonId()).isEqualTo("2");
         assertThat(response.getSymptoms()).contains("FEVER", "COUGH");
         assertThat(response.getStartTime()).isEqualTo("2022-07-23T07:15:00Z");
-        assertThat(response.getEndTime()).isEqualTo("2022-07-23T07:45:00Z");
+        assertThat(response.getEndTime()).isEqualTo("2022-07-23T07:25:00Z");
         assertThat(response.getNotes()).isEqualTo("Hey I am really sick!");
         assertThat(response.getCancellationLink()).isNotNull();
         assertThat(response.getVideoCallLink()).isNotNull();

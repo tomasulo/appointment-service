@@ -1,7 +1,6 @@
 package com.avimedical.appointments.scheduling.adapters.api.reasons;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.avimedical.appointments.generated.api.ReasonsApi;
 import com.avimedical.appointments.generated.model.ReasonDto;
@@ -17,12 +16,6 @@ class ReasonsController implements ReasonsApi {
 
     private final ReasonRepository repository;
     private final ReasonsMapper mapper;
-
-    @Override
-    public ResponseEntity<ReasonDto> createReason(ReasonDto reasonDto) {
-        Reason reason = repository.create(mapper.toDomain(reasonDto));
-        return ResponseEntity.ok(mapper.toDto(reason));
-    }
 
     @Override
     public ResponseEntity<List<ReasonDto>> getReasons() {
