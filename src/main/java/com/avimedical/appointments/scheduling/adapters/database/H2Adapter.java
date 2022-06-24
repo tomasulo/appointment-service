@@ -47,8 +47,7 @@ class H2Adapter implements AppointmentRepository, ReasonRepository {
                 .practiceId(appt.getPracticeId())
                 .videoCallLink(appt.getVideoCallLink())
                 .symptoms(String.join(",", appt.getSymptoms()))
-                .reason(ReasonEntity.builder().id(Integer.valueOf(appt.getReasonId())).build())
-                // TODO
+                .reason(reasonRepository.findById(Integer.valueOf(appt.getReasonId())).orElseThrow())
                 .staffId("")
                 .patientId("")
                 .build();
@@ -88,7 +87,7 @@ class H2Adapter implements AppointmentRepository, ReasonRepository {
                 .startTime(entity.getStartTime())
                 .endTime(entity.getEndTime())
                 .practiceId(entity.getPracticeId())
-                .reason(toDomain(entity.getReason()))
+                .reasonId(String.valueOf(entity.getReason().getId()))
                 .build();
     }
 

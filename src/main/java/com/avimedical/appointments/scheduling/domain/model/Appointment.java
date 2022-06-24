@@ -12,7 +12,6 @@ public class Appointment {
     String id;
     Channel channel;
     String reasonId;
-    Reason reason;
     String practiceId;
     String notes;
     List<String> symptoms;
