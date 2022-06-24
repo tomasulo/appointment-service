@@ -1,6 +1,7 @@
 package com.avimedical.appointments.scheduling.adapters.api.appointments;
 
 import java.time.Instant;
+import java.util.List;
 
 import com.avimedical.appointments.generated.model.AppointmentDto;
 import com.avimedical.appointments.generated.model.ChannelEnum;
@@ -19,6 +20,9 @@ class AppointmentMapper {
         dto.setStartTime(appointment.getStartTime().toString());
         dto.setEndTime(appointment.getEndTime().toString());
         dto.setCancellationLink(appointment.getCancellationLink());
+        dto.setChannel(ChannelEnum.valueOf(appointment.getChannel().toString()));
+        dto.setNotes(appointment.getNotes());
+        dto.setSymptoms(appointment.getSymptoms());
         return dto;
     }
 
