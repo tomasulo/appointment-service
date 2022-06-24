@@ -36,14 +36,3 @@ curl --location --request POST 'localhost:8080/appointments' \
 ```
 curl --location --request GET 'localhost:8080/reasons'
 ```
-
-### Create Reason
-
-```
-curl --location --request POST 'localhost:8080/reasons' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "title": "Title",
-    "description": "llorem ipsum"
-}'
-```
