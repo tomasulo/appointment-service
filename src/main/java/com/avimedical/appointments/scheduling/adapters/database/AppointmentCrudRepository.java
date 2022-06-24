@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-interface AppointmentCrudRepository extends CrudRepository<AppointmentEntity, Long> {
+interface AppointmentCrudRepository extends CrudRepository<AppointmentEntity, Integer> {
 }

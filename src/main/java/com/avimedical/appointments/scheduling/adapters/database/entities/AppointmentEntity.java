@@ -26,7 +26,7 @@ public class AppointmentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Should be UUID or other non-guessable key format in production
+    private Integer id; // Should be UUID or other non-guessable key format in production
 
     private String channel;
     private String notes;

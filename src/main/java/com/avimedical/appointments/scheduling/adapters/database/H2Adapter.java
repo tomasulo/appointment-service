@@ -3,9 +3,6 @@ package com.avimedical.appointments.scheduling.adapters.database;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
-import javax.persistence.EntityManager;
 
 import com.avimedical.appointments.scheduling.adapters.database.entities.AppointmentEntity;
 import com.avimedical.appointments.scheduling.adapters.database.entities.ReasonEntity;
@@ -27,11 +24,7 @@ class H2Adapter implements AppointmentRepository, ReasonRepository {
     @Override
     public Appointment create(Appointment appt) {
         AppointmentEntity entity = toEntity(appt);
-
-        AppointmentEntity save = appointmentRepository.save(entity);
-
-        ReasonEntity reason = entity.getReason();
-
+        appointmentRepository.save(entity);
         return appt.toBuilder()
                 .id(entity.getId().toString())
                 .build();
@@ -39,7 +32,7 @@ class H2Adapter implements AppointmentRepository, ReasonRepository {
 
     @Override
     public Optional<Appointment> findAppointment(String id) {
-        return appointmentRepository.findById(Long.valueOf(id)).map(this::toDomain);
+        return appointmentRepository.findById(Integer.valueOf(id)).map(this::toDomain);
     }
 
     private AppointmentEntity toEntity(Appointment appt) {
@@ -49,7 +42,7 @@ class H2Adapter implements AppointmentRepository, ReasonRepository {
                 .practiceId(appt.getPracticeId())
                 .videoCallLink(appt.getVideoCallLink())
                 .symptoms(String.join(",", appt.getSymptoms()))
-                .reason(ReasonEntity.builder().id(Long.valueOf(appt.getReasonId())).build())
+                .reason(ReasonEntity.builder().id(Integer.valueOf(appt.getReasonId())).build())
                 // TODO
                 .staffId("")
                 .patientId("")
@@ -72,12 +65,12 @@ class H2Adapter implements AppointmentRepository, ReasonRepository {
     public List<Reason> getReasons() {
         List<ReasonEntity> entities = new ArrayList<>();
         reasonRepository.findAll().forEach(entities::add);
-        return entities.stream().map(this::toDomain).collect(Collectors.toList());
+        return entities.stream().map(this::toDomain).toList();
     }
 
     @Override
     public Optional<Reason> find(String reasonId) {
-        return reasonRepository.findById(Long.valueOf(reasonId)).map(this::toDomain);
+        return reasonRepository.findById(Integer.valueOf(reasonId)).map(this::toDomain);
     }
 
     private Appointment toDomain(AppointmentEntity entity) {
