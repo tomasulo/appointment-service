@@ -4,7 +4,7 @@ info:
   version: 1.0.0
 paths:
   /appointments:
-    parameters: []
+    parameters: [ ]
     post:
       summary: ''
       operationId: createAppointment
@@ -23,7 +23,7 @@ paths:
   /reasons:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags: [ ]
       responses:
         '200':
           description: OK
@@ -33,7 +33,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ReasonDto'
-              examples: {}
+              examples: { }
       operationId: getReasons
     post:
       summary: ''
@@ -102,16 +102,9 @@ components:
     TreatmentDto:
       type: object
       properties:
-        staffId:
+        staff:
           type: string
         duration:
           type: string
-        description:
-          type: string
-      x-examples:
-        example-1:
-          staffId: string
-          duration: string
-          description: string
-  responses: {}
-  requestBodies: {}
+  responses: { }
+  requestBodies: { }

@@ -1,9 +1,6 @@
 package com.avimedical.appointments.scheduling.adapters.database.entities;
 
-import java.time.Instant;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,38 +10,30 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "APPOINTMENTS")
+@Table(name = "TREATMENT")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AppointmentEntity {
+public class TreatmentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id; // Should be UUID or other non-guessable key format in production
 
-    private String channel;
-    private String notes;
-    private String symptoms;
-    private String videoCallLink;
-    private String cancellationLink;
-    private Instant startTime;
-    private Instant endTime;
-
-    // todo: FK relations to other entities
-    private String patientId;
-    private String practiceId;
-    private String staffId;
+    @ManyToOne
+    @JoinColumn(name = "reason_id")
+    private ReasonEntity reason;
 
     @ManyToOne
-    @JoinColumn(name ="reason_id")
-    private ReasonEntity reason;
+    @JoinColumn(name = "staff_id")
+    private StaffEntity staff;
+
+    private String duration;
 }

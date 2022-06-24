@@ -1,14 +1,19 @@
 package com.avimedical.appointments.scheduling.adapters.database;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import com.avimedical.appointments.scheduling.adapters.database.entities.AppointmentEntity;
 import com.avimedical.appointments.scheduling.adapters.database.entities.ReasonEntity;
+import com.avimedical.appointments.scheduling.adapters.database.entities.StaffEntity;
+import com.avimedical.appointments.scheduling.adapters.database.entities.TreatmentEntity;
 import com.avimedical.appointments.scheduling.domain.model.Appointment;
 import com.avimedical.appointments.scheduling.domain.model.Channel;
 import com.avimedical.appointments.scheduling.domain.model.Reason;
+import com.avimedical.appointments.scheduling.domain.model.Staff;
+import com.avimedical.appointments.scheduling.domain.model.Treatment;
 import com.avimedical.appointments.scheduling.domain.ports.AppointmentRepository;
 import com.avimedical.appointments.scheduling.domain.ports.ReasonRepository;
 import lombok.RequiredArgsConstructor;
@@ -92,6 +97,20 @@ class H2Adapter implements AppointmentRepository, ReasonRepository {
                 .id(entity.getId().toString())
                 .title(entity.getTitle())
                 .description(entity.getDescription())
+                .treatments(entity.getTreatments().stream().map(this::toDomain).toList())
+                .build();
+    }
+
+    private Treatment toDomain(TreatmentEntity entity) {
+        return Treatment.builder()
+                .staff(toDomain(entity.getStaff()))
+                .duration(Duration.parse(entity.getDuration()))
+                .build();
+    }
+
+    private Staff toDomain(StaffEntity entity) {
+        return Staff.builder()
+                .name(entity.getName())
                 .build();
     }
 

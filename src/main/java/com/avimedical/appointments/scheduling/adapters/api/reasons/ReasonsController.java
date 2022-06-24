@@ -27,6 +27,6 @@ class ReasonsController implements ReasonsApi {
     @Override
     public ResponseEntity<List<ReasonDto>> getReasons() {
         List<Reason> reasons = repository.getReasons();
-        return ResponseEntity.ok(reasons.stream().map(mapper::toDto).collect(Collectors.toList()));
+        return ResponseEntity.ok(reasons.stream().map(mapper::toDto).toList());
     }
 }
