@@ -2,10 +2,9 @@
 
 A service to schedule appointments with avi medical practices.
 
+## Development
 
-## Local Development
-
-This project is built with Java 17 and Gradle.
+This project is built with Java 17 and the architecture follows a pragmatic approach of the Ports & Adapters pattern.
 
 ### Starting the service
 
