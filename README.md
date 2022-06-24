@@ -1,6 +1,6 @@
 # appointment-service
 
-A service to schedule appointments with avi medical practices.
+A service to schedule doctor's appointments.
 
 ## Development
 
